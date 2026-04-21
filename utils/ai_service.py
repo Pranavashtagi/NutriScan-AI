@@ -4,7 +4,10 @@ import base64
 import requests
 from dotenv import load_dotenv
 
-load_dotenv()
+try:
+    load_dotenv()
+except Exception:
+    pass
 
 def analyze_food_image(image_path):
     """
