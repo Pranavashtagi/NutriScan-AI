@@ -1,0 +1,5 @@
+{
+  "deploy": {
+    "startCommand": "gunicorn app:app"
+  }
+}
