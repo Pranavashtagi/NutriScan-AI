@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriScan AI — Analysis Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="nav-logo">
+            <span class="nav-logo-dot"></span>
+            NutriScan AI
+        </a>
+        <span class="nav-badge">Powered by Llama 4</span>
+    </nav>
+
+    <div class="page">
+        <header class="result-header">
+            <a href="/" class="back-link">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                New Analysis
+            </a>
+            <h1 class="result-title">Nutrition Report</h1>
+            {% if results %}
+            <span class="result-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="#10b981">
+                    <circle cx="12" cy="12" r="10" />
+                </svg>
+                {{ results|length }} item{{ 's' if results|length != 1 else '' }} detected
+            </span>
+            {% else %}
+            <span></span>
+            {% endif %}
+        </header>
+
+        {% if results %}
+        <main class="results-grid">
+
+            <!-- Left: Image -->
+            <aside class="result-image-card">
+                <img src="{{ url_for('static', filename='uploads/' + image_url) }}" alt="Analyzed food image">
+                <div class="result-image-meta">
+                    <div class="meta-row">
+                        <span>Analysis time</span>
+                        <strong>{{ processing_time }}s</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>Model</span>
+                        <strong>Llama 4 Scout</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>Items found</span>
+                        <strong>{{ results|length }}</strong>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right: Dashboard -->
+            <section class="summary-dashboard">
+
+                <!-- Calories hero -->
+                <div class="calorie-hero">
+                    <p class="calorie-label">Total Estimated Calories</p>
+                    <div>
+                        <span class="calorie-value">{{ total_calories }}</span>
+                        <span class="calorie-unit">kcal</span>
+                    </div>
+                </div>
+
+                <!-- Macros -->
+                <div class="macros-grid">
+                    <div class="macro-card protein">
+                        <h4>Protein</h4>
+                        <div class="value">{{ total_protein }}g</div>
+                    </div>
+                    <div class="macro-card carbs">
+                        <h4>Carbs</h4>
+                        <div class="value">{{ total_carbs }}g</div>
+                    </div>
+                    <div class="macro-card fat">
+                        <h4>Fat</h4>
+                        <div class="value">{{ total_fat }}g</div>
+                    </div>
+                </div>
+
+                <!-- Food items table -->
+                <div class="food-items-card">
+                    <div class="card-header">
+                        <h3>Detected Ingredients</h3>
+                        <span class="item-count">{{ results|length }} items</span>
+                    </div>
+                    <table class="food-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Protein</th>
+                                <th>Carbs</th>
+                                <th>Fat</th>
+                                <th>Calories</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in results %}
+                            <tr>
+                                <td>
+                                    <div class="food-name-cell">
+                                        <span>{{ item.food_name }}</span>
+                                        <span class="food-qty-tag">{{ item.quantity }}</span>
+                                    </div>
+                                </td>
+                                <td>{{ item.protein }}g</td>
+                                <td>{{ item.carbs }}g</td>
+                                <td>{{ item.fat }}g</td>
+                                <td><span class="cal-pill">{{ item.calories }}</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+        </main>
+
+        <div class="action-bar">
+            <a href="/" class="secondary-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                New Analysis
+            </a>
+            <button onclick="window.print()" class="analyze-btn" style="width:auto;">
+                Export Report
+            </button>
+        </div>
+
+        {% else %}
+        <!-- No food detected state -->
+        <main class="results-grid">
+            <aside class="result-image-card">
+                <img src="{{ url_for('static', filename='uploads/' + image_url) }}" alt="Analyzed image">
+                <div class="result-image-meta">
+                    <div class="meta-row">
+                        <span>Analysis time</span>
+                        <strong>{{ processing_time }}s</strong>
+                    </div>
+                    <div class="meta-row">
+                        <span>Result</span>
+                        <strong style="color:#fca5a5;">No food found</strong>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="summary-dashboard">
+                <div class="no-food-card">
+                    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <h2>No Food Detected</h2>
+                    <p>The AI completed its analysis but couldn't identify any food items in this image. Try uploading a
+                        clearer photo with the food more visible.</p>
+                    <a href="/" class="analyze-btn" style="text-decoration:none;display:inline-block;width:auto;">Try
+                        Another Image</a>
+                </div>
+            </section>
+        </main>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>

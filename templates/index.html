@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NutriScan AI — Instant Nutritional Analysis</title>
+    <meta name="description"
+        content="Upload a food photo and get instant AI-powered nutritional analysis including calories, protein, fat, and carbohydrates.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="/" class="nav-logo">
+            <span class="nav-logo-dot"></span>
+            NutriScan AI
+        </a>
+        <span class="nav-badge">Powered by Llama 4</span>
+    </nav>
+
+    <div class="page">
+        <header class="hero">
+            <div class="hero-eyebrow">Computer Vision &amp; Nutrition Intelligence</div>
+            <h1>Analyze Any Meal<br>Instantly</h1>
+            <p>Upload a photo of your food and receive a complete nutritional breakdown in seconds — no manual logging
+                required.</p>
+        </header>
+
+        <main>
+            <div class="upload-card">
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="upload-area" id="uploadArea">
+                        <input type="file" id="foodImage" name="food_image" accept="image/*" hidden>
+                        <div class="upload-content">
+                            <div class="upload-icon-wrap">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#818cf8"
+                                    stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <h3>Drop your food photo here</h3>
+                            <p>or click to browse files</p>
+                            <small>JPG, PNG, WEBP — up to 16 MB</small>
+                        </div>
+                    </div>
+
+                    <div id="previewSection" class="preview-section" style="display:none;">
+                        <p class="preview-label">Image Preview</p>
+                        <div class="preview-container">
+                            <img id="imagePreview" src="" alt="Food preview">
+                            <button type="button" onclick="clearImage()" class="clear-btn" title="Remove">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white"
+                                    stroke-width="2.5" stroke-linecap="round">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="loading" class="loading" style="display:none;">
+                        <div class="spinner"></div>
+                        <p>Analyzing image…</p>
+                        <p class="loading-sub">Identifying food items and computing macros</p>
+                    </div>
+
+                    <button type="submit" class="analyze-btn" id="analyzeBtn" disabled>
+                        Analyze Nutrition
+                    </button>
+                </form>
+            </div>
+
+            <section class="features">
+                <p class="section-label">How it works</p>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon-wrap green">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z">
+                                </path>
+                                <circle cx="12" cy="13" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h4>Upload Any Meal</h4>
+                        <p>Take a photo or drag in an image. The model handles everything from single ingredients to
+                            complex dishes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrap indigo">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#818cf8"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"></circle>
+                                <path
+                                    d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83">
+                                </path>
+                            </svg>
+                        </div>
+                        <h4>AI Vision Analysis</h4>
+                        <p>Llama 4 Scout identifies each food item and estimates its portion size with high accuracy.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-wrap amber">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f59e0b"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                        </div>
+                        <h4>Full Macro Report</h4>
+                        <p>Get a detailed breakdown of calories, protein, carbohydrates, and fat for every item
+                            detected.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
