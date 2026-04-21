@@ -1,10 +1,19 @@
 from flask import Flask, render_template, request, jsonify
 import os
+import sys
 import time
+import traceback
 from werkzeug.utils import secure_filename
 from utils.ai_service import analyze_food_image
 
 app = Flask(__name__)
+
+@app.errorhandler(Exception)
+def handle_error(error):
+    print(f"ERROR: {error}", file=sys.stderr)
+    traceback.print_exc(file=sys.stderr)
+    return jsonify({'error': 'Internal server error'}), 500
+
 app.config['UPLOAD_FOLDER'] = 'static/uploads/'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max
 
