@@ -2,7 +2,7 @@
 (AI-Based Food Nutrition Estimator)
 
 ## LINK:
-nutriscan-ai.up.railway.app
+[nutriscan-ai.up.railway.app](https://nutriscan-ai.up.railway.app/)
 
 ##  Overview
 This project is an AI-based application that estimates food calories and nutrient composition (proteins, carbohydrates, vitamins, etc.) from images.
