@@ -16,6 +16,10 @@ This project is an AI-based application that estimates food calories and nutrien
 - gunicorn
 - HTML/CSS/JS
 
+##Screenshots
+<img width="1654" height="914" alt="image" src="https://github.com/user-attachments/assets/8f9b9e33-a9f0-4271-811a-6198bf02d44e" />
+<img width="1666" height="901" alt="image" src="https://github.com/user-attachments/assets/dbc01d77-d46a-4da2-9541-d6591c9b8480" />
+
 ##  How to Run
 1. Clone the repository
 2. Install dependencies:
