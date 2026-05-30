@@ -2,3 +2,4 @@ flask>=2.3.0
 requests>=2.28.0
 python-dotenv>=1.0.0
 gunicorn
+groq==1.4.0
