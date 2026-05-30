@@ -2,7 +2,7 @@
 (AI-Based Food Nutrition Estimator)
 
 ## LINK:
-[nutriscan-ai.up.railway.app](https://nutriscan-ai.up.railway.app/)
+[https://pranav9999.pythonanywhere.com/](https://pranav9999.pythonanywhere.com/)
 
 ##  Overview
 This project is an AI-based application that estimates food calories and nutrient composition (proteins, carbohydrates, vitamins, etc.) from images.
@@ -18,6 +18,7 @@ This project is an AI-based application that estimates food calories and nutrien
 - python-dotenv
 - gunicorn
 - HTML/CSS/JS
+- Groq API
 
 ##Screenshots
 <img width="1654" height="914" alt="image" src="https://github.com/user-attachments/assets/8f9b9e33-a9f0-4271-811a-6198bf02d44e" />
