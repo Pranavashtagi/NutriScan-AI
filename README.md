@@ -21,8 +21,8 @@ This project is an AI-based application that estimates food calories and nutrien
 - Groq API
 
 ##Screenshots
-<img width="1654" height="914" alt="image" src="https://github.com/user-attachments/assets/8f9b9e33-a9f0-4271-811a-6198bf02d44e" />
-<img width="1666" height="901" alt="image" src="https://github.com/user-attachments/assets/dbc01d77-d46a-4da2-9541-d6591c9b8480" />
+<img width="1652" height="904" alt="image" src="https://github.com/user-attachments/assets/d63027bd-471d-45e1-97e3-9b633648ef31" />
+<img width="1666" height="906" alt="image" src="https://github.com/user-attachments/assets/922318e4-3039-4223-b5e3-3a3f1fb792a9" />
 
 ##  How to Run
 1. Clone the repository
