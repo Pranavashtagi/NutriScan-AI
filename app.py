@@ -14,10 +14,20 @@ def handle_error(error):
     traceback.print_exc(file=sys.stderr)
     return jsonify({'error': 'Internal server error'}), 500
 
-app.config['UPLOAD_FOLDER'] = 'static/uploads/'
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp', 'bmp', 'tiff'}
+app.config['UPLOAD_FOLDER'] = os.path.join(
+    BASE_DIR,
+    'static',
+    'uploads'
+)
+
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
+ALLOWED_EXTENSIONS = {
+    'png', 'jpg', 'jpeg',
+    'gif', 'webp', 'bmp', 'tiff'
+}
 
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
